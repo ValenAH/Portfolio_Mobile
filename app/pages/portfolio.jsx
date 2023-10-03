@@ -1,11 +1,11 @@
 import React from "react";
+import {Text, View} from 'react-native';
 
 const Portfolio = () => {
-
     return (
-        <div>
-            <p>Hola Ruben</p>
-        </div>
+        <View>
+            <Text>Hola Ruben</Text>
+        </View>
     )
 }
 
