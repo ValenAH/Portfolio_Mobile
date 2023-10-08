@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {Text, View, TextInput,Button,StyleSheet} from 'react-native';
-import './customer.scss';
 
 const CustomerForm = ({navigation})=>{
      
