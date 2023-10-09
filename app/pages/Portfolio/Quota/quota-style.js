@@ -1,19 +1,18 @@
 import { StyleSheet } from "react-native";
 
-const LoginStyles = StyleSheet.create({
+const QuotaStyles = StyleSheet.create({
     container:{
         backgroundColor: '#0F0F0F',
         padding: 20,
         height: '100%',
         display: "flex",
-        justifyContent:"center",
+        justifyContent:"start",
         alignItems: "center"
     },
-    title: {
+    text: {
         color: "white",
-        fontSize: 24,
-        fontWeight: "bold",
-        marginVertical: 20
+        fontSize: 16,
+        fontWeight: 500,
     },
     input: {
         height: 40,
@@ -26,18 +25,6 @@ const LoginStyles = StyleSheet.create({
         borderRadius: 5,
         fontSize: 20,
     },
-    btn: {
-        width: '90%',
-        backgroundColor: "#7aC4f5",
-        borderRadius: 5,
-        marginTop: 20,
-    },
-    btnText: {
-        color: "black",
-        fontWeight: "bold",
-        textAlign: "center",
-        margin: 10,
-    }
 })
 
-export default LoginStyles;
+export default QuotaStyles;
