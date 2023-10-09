@@ -46,6 +46,10 @@ const Portfolio = ({navigation}) => {
             />
             
             <Button 
+                title="Nueva Venta"
+                onPress={()=>{navigation.navigate('SaleForm')}}
+            />
+            <Button 
                 title="Crear Cliente"
                 onPress={()=>{navigation.navigate('CustomerForm')}}
             />
