@@ -67,7 +67,7 @@ const SaleForm = ({ navigation }) => {
             placeholderTextColor="#000000"
             color="#7AC4F5"
             onPress={() => {
-              navigation.navigate("Portfolio");
+              navigation.navigate("CustomerForm");
             }}
           />
         </View>

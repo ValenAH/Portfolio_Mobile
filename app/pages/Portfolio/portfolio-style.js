@@ -20,8 +20,19 @@ const PortfolioStyle = StyleSheet.create({
         borderRadius: 5,
         fontSize: 20,
     },
+    listContainer: {
+        width: '95%',
+        height: '80%',
+    },
     customerContainer: {
+        padding: 20,
+        margin: 5,
         flex: 1,
+        flexDirection:'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: '#292828',
+        borderRadius: 5,
     },
     name: {
         color: '#EABE3F',
@@ -30,14 +41,52 @@ const PortfolioStyle = StyleSheet.create({
     },
     text: {
         color: "white",
-        fontSize: 16
+        fontSize: 16,
+        fontWeight: 500,
     },
     btnQuota: {
         backgroundColor: '#0F0F0F',
-        color: '#7AC4F5',
         borderWidth: 1,
         borderColor: '#7AC4F5',
-        borderRadius: 5
+        borderRadius: 5,
+        height: 35,
+        justifyContent: "center",
+        alignItems: "center",
+        paddingVertical: 8,
+        paddingHorizontal: 15,
+    },
+    reportsContainer: {
+        width: '90%',
+        flex: 1,
+        flexDirection:'row',
+        justifyContent: 'space-between',
+        position: 'absolute',
+        bottom: 10,
+        gap: 10,
+    },
+    reportContainer: {
+        flex: 1,
+        flexDirection:'row',
+        justifyContent: 'space-between',
+        alignItems: "center",
+        padding: 8,
+        borderWidth: 1,
+        borderColor: "white",
+        height: 40,
+        borderRadius: 5,
+    },
+    saleBtn: {
+        position: 'absolute',
+        bottom: 80,
+        width: '90%',
+        backgroundColor: "#7aC4f5",
+        borderRadius: 5,
+    },
+    saleText: {
+        color: "black",
+        fontWeight: "bold",
+        textAlign: "center",
+        margin: 15,
     }
 })
 

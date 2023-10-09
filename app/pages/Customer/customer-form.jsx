@@ -38,9 +38,10 @@ const CustomerForm = ({ navigation }) => {
               setSelected={(val) => setSelected(val)}
               data={data}
               save="value"
+              inputStyles={styles.whitePlaceholder}
               dropdownTextStyles={{ color: "white" }}
               placeholder="Ingrese documento"
-              placeholderTextColor={{ color: "white" }}
+              style={styles.whitePlaceholder}
             />
           </View>
         </View>
@@ -133,6 +134,7 @@ const styles = StyleSheet.create({
     height: 40,
     width: "100%",
     paddingLeft: "2%",
+    color: "rgb(131 129 129)",
   },
   btn: {
     height: 25,
@@ -142,6 +144,9 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "white",
     fontWeight: "bold",
+  },
+  whitePlaceholder: {
+    color: "white",
   },
 });
 
