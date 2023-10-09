@@ -20,7 +20,7 @@ const CustomerForm = ({navigation})=>{
                 <TextInput style={styles.input}/>
                 <Button 
                     title="Registrar"
-                    color="#2664bd"
+                    style={styles.btn}
                     onPress={()=>{navigation.navigate('Portfolio')}}
                     />
                 
