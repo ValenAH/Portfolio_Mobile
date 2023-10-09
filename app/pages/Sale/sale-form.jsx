@@ -48,6 +48,7 @@ const SaleForm = ({ navigation }) => {
           <SelectList
                   setSelected={(val) => setSelectedValue(val)}
                   save="value"
+                  inputStyles={styles.whitePlaceholder}
                   dropdownTextStyles={{ color: "white" }}
                   placeholder="Ingrese documento"
                   placeholderTextColor={{ color: "white" }}
@@ -141,6 +142,9 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
   },
+  whitePlaceholder: {
+    color: "white",
+  }
 });
 
 export default SaleForm;
