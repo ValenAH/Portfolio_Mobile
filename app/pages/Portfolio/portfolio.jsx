@@ -55,7 +55,7 @@ const Portfolio = ({navigation}) => {
                 keyExtractor={item => item.id}
             />
             <Pressable style={PortfolioStyle.saleBtn}
-            onPress={()=>{navigation.navigate('CustomerForm')}}
+            onPress={()=>{navigation.navigate('SaleForm')}}
             >
                 <Text style={PortfolioStyle.saleText}>Nueva venta</Text>
             </Pressable>
