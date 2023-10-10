@@ -25,6 +25,10 @@ const QuotaStyles = StyleSheet.create({
         borderRadius: 5,
         fontSize: 20,
     },
+    searchInput: {
+        height: 20,
+        color: "white",
+    }
 })
 
 export default QuotaStyles;
