@@ -1,24 +1,23 @@
 import React, { useState } from "react";
 import { Text, View, TextInput, Button, StyleSheet } from "react-native";
-import { SelectList } from "react-native-dropdown-select-list"
+import { SelectList } from "react-native-dropdown-select-list";
 
 const customers = [
   { key: "1", value: "Daniel Guerra" },
   { key: "2", value: "Ruben Londono" },
-  { key: "3", value: "Valentina Alzate" }
+  { key: "3", value: "Valentina Alzate" },
 ];
 
 const SaleForm = ({ navigation }) => {
-  
-  const[fecha, setFecha] = useState('');
-  const [selectedValue, setSelectedValue] = useState('item1');
+  const [fecha, setFecha] = useState("");
+  const [selectedValue, setSelectedValue] = useState("item1");
 
-  const handleFechaChange  = (e) => {
-    setFecha(e)
-  }
+  const handleFechaChange = (e) => {
+    setFecha(e);
+  };
 
-  return(
-      <View
+  return (
+    <View
       style={{
         borderWidth: 1,
         padding: "5%",
@@ -46,21 +45,22 @@ const SaleForm = ({ navigation }) => {
         </View>
         <View style={{ paddingTop: "2%" }}>
           <SelectList
-                  setSelected={(val) => setSelectedValue(val)}
-                  save="value"
-                  dropdownTextStyles={{ color: "white" }}
-                  placeholder="Ingrese documento"
-                  placeholderTextColor={{ color: "white" }}
-                  data={customers}
+            setSelected={(val) => setSelectedValue(val)}
+            save="value"
+            inputStyles={styles.whitePlaceholder}
+            dropdownTextStyles={{ color: "white" }}
+            placeholder="Ingrese documento"
+            placeholderTextColor={{ color: "white" }}
+            data={customers}
           />
         </View>
         <View
-            style={{
-              flex: 2,
-              borderWidth: 1,
-              justifyContent: "center",
-            }}
-          >
+          style={{
+            flex: 2,
+            borderWidth: 1,
+            justifyContent: "center",
+          }}
+        >
           <Button
             title="Registrar nuevo cliente"
             placeholderTextColor="#000000"
@@ -72,56 +72,92 @@ const SaleForm = ({ navigation }) => {
         </View>
 
         <View style={{ display: "flex", flexDirection: "column" }}>
-          
-          <View style={{ display: "flex", flexDirection:"row", gap: 20, margin: 5, backgroundColor: "#3C3C3C", padding: 15  }}>
-            <Text style={{ fontSize: 15, color: "#FFFFFF", fontWeight: "bold" }}>
-                Doble Pillow 100 x 190
-              </Text>
-              <Text style={{ fontSize: 15, color: "#daa520", fontWeight: "bold" }}>
-                600.000
-              </Text>
-          </View>
-          
-          <View style={{ display: "flex", flexDirection:"row", gap: 20, margin: 5, backgroundColor: "#3C3C3C", padding: 15}}>
-            <Text style={{ fontSize: 15, color: "#FFFFFF", fontWeight: "bold" }}>
-                Doble Pillow 140 x 190
-              </Text>
-              <Text style={{ fontSize: 15, color: "#daa520", fontWeight: "bold" }}>
-                1'000.000
-              </Text>
-          </View>
-          
-          <View style={{ display: "flex", flexDirection:"row", gap: 20, margin: 5, backgroundColor: "#3C3C3C", padding: 15}}>
-            <Text style={{ fontSize: 15, color: "#FFFFFF", fontWeight: "bold" }}>
-                Semiortopedico 140 x 190
-              </Text>
-              <Text style={{ fontSize: 15, color: "#daa520", fontWeight: "bold" }}>
-                430.000
-              </Text>
-          </View>
-
-        </View> 
-        
-      </View>
-      <View
+          <View
             style={{
-              flex: 2,
-              borderWidth: 1,
-              justifyContent: "center",
+              display: "flex",
+              flexDirection: "row",
+              gap: 20,
+              margin: 5,
+              backgroundColor: "#3C3C3C",
+              padding: 15,
             }}
           >
-          <Button
-            title="Facturar"
-            placeholderTextColor="#000000"
-            color="#7AC4F5"
-            onPress={() => {
-              navigation.navigate("Portfolio");
+            <Text
+              style={{ fontSize: 15, color: "#FFFFFF", fontWeight: "bold" }}
+            >
+              Doble Pillow 100 x 190
+            </Text>
+            <Text
+              style={{ fontSize: 15, color: "#daa520", fontWeight: "bold" }}
+            >
+              600.000
+            </Text>
+          </View>
+
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: 20,
+              margin: 5,
+              backgroundColor: "#3C3C3C",
+              padding: 15,
             }}
-          />
+          >
+            <Text
+              style={{ fontSize: 15, color: "#FFFFFF", fontWeight: "bold" }}
+            >
+              Doble Pillow 140 x 190
+            </Text>
+            <Text
+              style={{ fontSize: 15, color: "#daa520", fontWeight: "bold" }}
+            >
+              1'000.000
+            </Text>
+          </View>
+
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: 20,
+              margin: 5,
+              backgroundColor: "#3C3C3C",
+              padding: 15,
+            }}
+          >
+            <Text
+              style={{ fontSize: 15, color: "#FFFFFF", fontWeight: "bold" }}
+            >
+              Semiortopedico 140 x 190
+            </Text>
+            <Text
+              style={{ fontSize: 15, color: "#daa520", fontWeight: "bold" }}
+            >
+              430.000
+            </Text>
+          </View>
         </View>
+      </View>
+      <View
+        style={{
+          flex: 2,
+          borderWidth: 1,
+          justifyContent: "center",
+        }}
+      >
+        <Button
+          title="Facturar"
+          placeholderTextColor="#000000"
+          color="#7AC4F5"
+          onPress={() => {
+            navigation.navigate("Portfolio");
+          }}
+        />
+      </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   input: {
@@ -140,6 +176,9 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "white",
     fontWeight: "bold",
+  },
+  whitePlaceholder: {
+    color: "white",
   },
 });
 
