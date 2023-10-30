@@ -16,6 +16,30 @@ const CustomerForm = ({ navigation }) => {
   const [telefono, setTelefono] = useState("");
   const [correo, setCorreo] = useState("");
   const [dirección, setDireccion] = useState("");
+
+  const apiCustomer = "https://localhost:7291/api/Customer/SaveCustomer";
+  const createCustomer = () => {
+    const data = {
+      name: nombre,
+      identificationNumber: documento,
+      identificationTypeId: 1,
+      telephone: telefono,
+      address: dirección,
+      email: correo,
+    };
+    fetch(apiCustomer, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((response) => {
+      console.log(response);
+      // return navigation.navigate("Portfolio");
+    });
+  };
+
   return (
     <View
       style={{
@@ -117,9 +141,7 @@ const CustomerForm = ({ navigation }) => {
           title="Registrar"
           placeholderTextColor="#000000"
           color="#7AC4F5"
-          onPress={() => {
-            navigation.navigate("Portfolio");
-          }}
+          onPress={createCustomer}
         />
       </View>
     </View>
