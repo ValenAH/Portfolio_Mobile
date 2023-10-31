@@ -1,17 +1,71 @@
-import React, { useState } from "react";
-import { Text, View, TextInput, Button, StyleSheet } from "react-native";
-import { SelectList } from "react-native-dropdown-select-list";
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
 
-const customers = [
-  { key: "1", value: "Daniel Guerra" },
-  { key: "2", value: "Ruben Londono" },
-  { key: "3", value: "Valentina Alzate" },
-];
+import { Text, View, TextInput, Button, StyleSheet, FlatList, ScrollView } from "react-native";
+import { SelectList } from "react-native-dropdown-select-list";
+import { CheckBox } from "react-native-elements";
+
+// const customers = [
+//   { key: "1", value: "Daniel Guerra" },
+//   { key: "2", value: "Ruben Londono" },
+//   { key: "3", value: "Valentina Alzate" },
+// ];
 
 const SaleForm = ({ navigation }) => {
   const [fecha, setFecha] = useState("");
   const [selectedValue, setSelectedValue] = useState("item1");
+  const [products, setProducts] = useState([]);
+  const [customers, setCustomers] = useState([]);
+  const [selectedProductIds, setSelectedProductIds] = useState([]);
 
+  const toggleProductCheckbox = (productId) => {
+    setSelectedProductIds((prevSelectedProductIds) => {
+
+      if (prevSelectedProductIds.includes(productId)) {
+        return prevSelectedProductIds.filter(id => id !== productId);
+      } else {
+        return [...prevSelectedProductIds, productId];
+      }
+    });
+  };
+
+  const facturar = () => {
+    console.log(selectedProductIds);
+  }
+
+  useEffect(() => {
+    const productsList = async () => {
+      try{
+        const response = await axios.get('https://localhost:7291/api/Product/GetProducts');
+
+        setProducts(response.data.data);
+      }
+      catch (error) {
+        console.error(error);
+      }
+      
+    };
+
+    const customerList = async () => {
+      try {
+        const response = await axios.get('https://localhost:7291/api/Customer/GetCustomers');
+
+        const filteredCustomers = response.data.data.map(customer => ({
+          label: customer.id.toString(), // Convierte el ID a cadena si es necesario
+          value: customer.name
+        }))
+
+        setCustomers(filteredCustomers);
+      }
+      catch (error) {
+
+      }
+    }
+    
+    productsList();
+    customerList();
+  }, []);
+  
   const handleFechaChange = (e) => {
     setFecha(e);
   };
@@ -71,72 +125,42 @@ const SaleForm = ({ navigation }) => {
           />
         </View>
 
-        <View style={{ display: "flex", flexDirection: "column" }}>
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: 20,
-              margin: 5,
-              backgroundColor: "#3C3C3C",
-              padding: 15,
-            }}
-          >
-            <Text
-              style={{ fontSize: 15, color: "#FFFFFF", fontWeight: "bold" }}
-            >
-              Doble Pillow 100 x 190
-            </Text>
-            <Text
-              style={{ fontSize: 15, color: "#daa520", fontWeight: "bold" }}
-            >
-              600.000
-            </Text>
-          </View>
-
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: 20,
-              margin: 5,
-              backgroundColor: "#3C3C3C",
-              padding: 15,
-            }}
-          >
-            <Text
-              style={{ fontSize: 15, color: "#FFFFFF", fontWeight: "bold" }}
-            >
-              Doble Pillow 140 x 190
-            </Text>
-            <Text
-              style={{ fontSize: 15, color: "#daa520", fontWeight: "bold" }}
-            >
-              1'000.000
-            </Text>
-          </View>
-
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: 20,
-              margin: 5,
-              backgroundColor: "#3C3C3C",
-              padding: 15,
-            }}
-          >
-            <Text
-              style={{ fontSize: 15, color: "#FFFFFF", fontWeight: "bold" }}
-            >
-              Semiortopedico 140 x 190
-            </Text>
-            <Text
-              style={{ fontSize: 15, color: "#daa520", fontWeight: "bold" }}
-            >
-              430.000
-            </Text>
-          </View>
+        <View style={{ display: "flex", flexDirection: "column", maxHeight: 200 }}>
+        <ScrollView>
+          <FlatList
+              data={products}
+              keyExtractor={(item) => item.id}
+              renderItem={({ item }) => (
+              <View
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: 20,
+                  margin: 5,
+                  backgroundColor: "#3C3C3C",
+                  padding: 15,
+                }}
+              >
+                <Text
+                  style={{ fontSize: 15, color: "#FFFFFF", fontWeight: "bold" }}
+                >
+                  {item.name}
+                </Text>
+                <Text
+                  style={{ fontSize: 15, color: "#daa520", fontWeight: "bold" }}
+                >
+                  {item.price}
+                </Text>
+                <CheckBox
+                  title=""
+                  size={20}
+                  checked={selectedProductIds.includes(item.id)}
+                  onPress={() => toggleProductCheckbox(item.id)}
+                />
+              </View>
+              )}
+              />
+        </ScrollView>
         </View>
       </View>
       <View
@@ -150,9 +174,7 @@ const SaleForm = ({ navigation }) => {
           title="Facturar"
           placeholderTextColor="#000000"
           color="#7AC4F5"
-          onPress={() => {
-            navigation.navigate("Portfolio");
-          }}
+          onPress={facturar}
         />
       </View>
     </View>
