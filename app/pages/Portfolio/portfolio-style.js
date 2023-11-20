@@ -22,7 +22,7 @@ const PortfolioStyle = StyleSheet.create({
   },
   listContainer: {
     width: "95%",
-    height: "80%",
+    maxHeight: "63vh",
   },
   customerContainer: {
     padding: 20,

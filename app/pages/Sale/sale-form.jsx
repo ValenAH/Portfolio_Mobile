@@ -5,12 +5,6 @@ import { Text, View, TextInput, Button, StyleSheet, FlatList, ScrollView } from 
 import { SelectList } from "react-native-dropdown-select-list";
 import { CheckBox } from "react-native-elements";
 
-// const customers = [
-//   { key: "1", value: "Daniel Guerra" },
-//   { key: "2", value: "Ruben Londono" },
-//   { key: "3", value: "Valentina Alzate" },
-// ];
-
 const SaleForm = ({ navigation }) => {
   const [fecha, setFecha] = useState("");
   const [selectedValue, setSelectedValue] = useState("item1");
@@ -103,14 +97,14 @@ const SaleForm = ({ navigation }) => {
             save="value"
             inputStyles={styles.whitePlaceholder}
             dropdownTextStyles={{ color: "white" }}
-            placeholder="Ingrese documento"
+            placeholder="Seleccione un cliente"
             placeholderTextColor={{ color: "white" }}
             data={customers}
           />
         </View>
         <View
           style={{
-            flex: 2,
+            flex: 1,
             borderWidth: 1,
             justifyContent: "center",
           }}
@@ -126,7 +120,6 @@ const SaleForm = ({ navigation }) => {
         </View>
 
         <View style={{ display: "flex", flexDirection: "column", maxHeight: 200 }}>
-        <ScrollView>
           <FlatList
               data={products}
               keyExtractor={(item) => item.id}
@@ -135,7 +128,8 @@ const SaleForm = ({ navigation }) => {
                 style={{
                   display: "flex",
                   flexDirection: "row",
-                  gap: 20,
+                  justifyContent: "space-between",
+                  alignItems: "center",
                   margin: 5,
                   backgroundColor: "#3C3C3C",
                   padding: 15,
@@ -145,6 +139,11 @@ const SaleForm = ({ navigation }) => {
                   style={{ fontSize: 15, color: "#FFFFFF", fontWeight: "bold" }}
                 >
                   {item.name}
+                </Text>
+                <Text
+                  style={{ fontSize: 15, color: "#FFFFFF", fontWeight: "bold" }}
+                >
+                  {item.description}
                 </Text>
                 <Text
                   style={{ fontSize: 15, color: "#daa520", fontWeight: "bold" }}
@@ -160,7 +159,6 @@ const SaleForm = ({ navigation }) => {
               </View>
               )}
               />
-        </ScrollView>
         </View>
       </View>
       <View

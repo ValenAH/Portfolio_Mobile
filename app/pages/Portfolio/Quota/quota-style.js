@@ -28,6 +28,20 @@ const QuotaStyles = StyleSheet.create({
     searchInput: {
         height: 20,
         color: "white",
+    },
+    btnQuota: {
+        backgroundColor: "#7AC4F5",
+        borderRadius: 5,
+        height: 35,
+        width: '90%',
+        justifyContent:"center",
+        paddingVertical: 8,
+        paddingHorizontal: 15,
+        marginTop:10,
+    },
+    registerQuota: {
+        textAlign: "center",
+        fontWeight: 'bold'
     }
 })
 

@@ -1,49 +1,42 @@
-import React from "react";
-import {Text, View, TextInput, FlatList, SafeAreaView, Pressable} from 'react-native';
+import React, { useEffect, useState } from "react";
+import {Text, View, TextInput, FlatList, SafeAreaView, Pressable, ActivityIndicator} from 'react-native';
 import PortfolioStyle from './portfolio-style.js';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-
-const customers = [
-    {
-        id: '1',
-        name: 'Valentina Alzate',
-        address: 'Cra 20 N 56 - 12',
-        quota: '50.000'
-    },
-    {
-        id: '2',
-        name: 'Ruben Londoño',
-        address: 'Cra 20 N 56 - 12',
-        quota: '50.000'
-    },
-    {
-        id: '3',
-        name: 'Daniel Guerra',
-        address: 'Cra 20 N 56 - 12',
-        quota: '50.000'
-    },
-    {
-        id: '4',
-        name: 'Bernardo',
-        address: 'Cra 20 N 56 - 12',
-        quota: '100.000'
-    },
-]
+import axios from 'axios';
 
 const Portfolio = ({navigation}) => {
+
+    const [creditSales, setCreditSales]= useState([]);
+    const [loading, setLoading] = useState(false);
+
+    useEffect( () => {
+        const getCreditSales = async () => {
+            setLoading(true)
+            try {
+                const response = await axios.get("https://localhost:7291/api/Sale/GetCreditSales")
+                setCreditSales(response.data.data)
+                setLoading(false)
+            }
+            catch{
+                console.log("No hay créditos para mostrar");
+            }
+        }
+        getCreditSales();
+    }, []);
+
     return (
         <SafeAreaView style={PortfolioStyle.container}>
             <TextInput style={PortfolioStyle.searchInput} placeholder="Buscar cliente..." placeholderTextColor={'rgb(131 129 129)'}/>
             <FlatList
-                data={customers}
+                data={creditSales}
                 style={PortfolioStyle.listContainer}
                 renderItem={({item}) =>
                 <View style={PortfolioStyle.customerContainer}>
                     <View>
-                        <Text style={PortfolioStyle.name}>{item.name}</Text>
-                        <Text style={PortfolioStyle.text}>{item.address}</Text>
-                        <Text style={PortfolioStyle.text}>{item.quota}</Text>
+                        <Text style={PortfolioStyle.name}>{item.customer.name}</Text>
+                        <Text style={PortfolioStyle.text}>{item.customer.address}</Text>
+                        <Text style={PortfolioStyle.text}>{item.totalAmount}</Text>
                     </View>
                     <Pressable style={PortfolioStyle.btnQuota}
                     onPress={()=>{navigation.navigate('Quota', {id: item.id});}}
@@ -54,6 +47,7 @@ const Portfolio = ({navigation}) => {
                  }
                 keyExtractor={item => item.id}
             />
+            <ActivityIndicator size="large" color="#EABE3F" animating={loading}/>
             <Pressable style={PortfolioStyle.saleBtn}
             onPress={()=>{navigation.navigate('SaleForm')}}
             >
